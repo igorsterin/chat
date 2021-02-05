@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <?=
 $form->field($newMessage, 'message')
-    ->textarea(['placeholder' => 'Ваше сообщение', 'style' => 'margin-top: 0px; margin-bottom: 0px; height: 200px; width: 600px'])
+    ->textarea(['placeholder' => 'Ваше сообщение', 'style' => 'margin-top: 30px; margin-bottom: 0px; height: 170px; width: 600px'])
     ->label(false) ?>
 
 

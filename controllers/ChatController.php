@@ -28,6 +28,13 @@ class ChatController extends \yii\web\Controller
         ]);
     }
 
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
+    }
+
     public function actionChat()
     {
         $messages = Chat::find()->select(['id', 'message', 'date_pub', 'author'])->all();
@@ -37,7 +44,7 @@ class ChatController extends \yii\web\Controller
 
         if ($newMessage->load(Yii::$app->request->post())) {
             // данные в $model удачно проверены
-
+            $newMessage->author = Yii::$app->user->identity->username;
             $newMessage->save();
 
             return $this->refresh();
