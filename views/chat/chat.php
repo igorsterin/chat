@@ -6,11 +6,14 @@
 
 /** @var int $count */
 
+/** @var int $countCorrect */
+
 use yii\helpers\Html;
 
 $this->registerCssFile('@web/css/custom.css');
 $flag3 = '';
-if ($count == 0) {
+
+if ($countCorrect == 0) {
     $flag3 = 'empty-border';
 }
 
@@ -21,10 +24,10 @@ if ($count == 0) {
     <?= Html::beginTag('div', ['class' => 'messages ' . $flag3]) ?>
 
     <?php
-    if ($count == 0): ?>
+    if ($countCorrect == 0): ?>
 
-        <p class="empty-msg"
-        ">Здесь будет выводиться история чата</p>
+        <p class="empty-msg">
+            Здесь будет выводиться история чата</p>
 
     <?php
     else:
@@ -33,8 +36,14 @@ if ($count == 0) {
             $message = $messages[$i]['message'];
             $datePub = $messages[$i]['date_pub'];
             $author = $messages[$i]['author'];
+            $incorrect = $messages[$i]['incorrect'];
 
-            echo $this->render('message', ['message' => $message, 'datePub' => $datePub, 'author' => $author]);
+            if (!$incorrect) {
+                echo $this->render(
+                    'message',
+                    ['message' => $message, 'datePub' => $datePub, 'author' => $author, 'i' => $i + 1]
+                );
+            }
         } ?>
 
     <?php

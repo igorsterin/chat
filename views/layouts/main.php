@@ -59,11 +59,12 @@ $this->beginBody() ?>
                     . Html::endForm()
                     . '</li>'
                 ),
-                Yii::$app->user->isGuest ? ('') : (
-                Yii::$app->user->identity->is_admin ? (
-                ['label' => 'AdminPanel']
+                !Yii::$app->user->isGuest && Yii::$app->user->identity->is_admin ? (
+                ['label' => 'Users Table', 'url' => ['/chat/users-table']]
+                ) : (''),
+                !Yii::$app->user->isGuest && Yii::$app->user->identity->is_admin ? (
+                ['label' => 'Incorrect Messages', 'url' => ['/chat/incorrect-messages']]
                 ) : ('')
-                )
             ],
 
         ]

@@ -46,3 +46,6 @@
 .empty-border {
     border: solid 1px #8080801c;
 }
+.hide-href {
+    margin-left: 80px;
+}
