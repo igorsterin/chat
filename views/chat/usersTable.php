@@ -8,10 +8,11 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+$this->params['breadcrumbs'][] = 'Таблица пользователей';
+
 echo GridView::widget(
     [
         'dataProvider' => $dataProvider,
-        // 'tableOptions' => ['style' => 'width:2000px'],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
@@ -23,14 +24,12 @@ echo GridView::widget(
                 'label' => 'Роль',
                 'attribute' => 'is_admin',
                 'value' => function ($data) {
-                    $role = $data->is_admin == 1 ? 'Администратор' : 'Пользователь';
-                    return $role;
+                    return $data->is_admin == 1 ? 'Администратор' : 'Пользователь';
                 },
                 'contentOptions' => ['style' => 'width:300px; '],
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                // вы можете настроить дополнительные свойства здесь.
                 'template' => '{1}',
                 'buttons' => [
                     '1' => function ($url, $model, $key) {

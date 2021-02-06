@@ -46,7 +46,7 @@ $this->beginBody() ?>
         [
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
-                ['label' => 'Chat', 'url' => ['/chat/chat']],
+                ['label' => 'Chat', 'url' => ['/chat/index']],
                 Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/chat/login']]
                 ) : (

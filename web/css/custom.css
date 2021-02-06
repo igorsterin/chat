@@ -26,7 +26,6 @@
 .auth-msg {
     color: #999;
     margin-top: 30px;
-  /*  margin-left: 190px; */
     text-align: center;
     margin-bottom: 30px;
 }
@@ -35,7 +34,6 @@
 }
 .messages {
     height: 512px;
-    /* max-height: 512px; */
     overflow: auto;
 }
 .empty-msg {

@@ -7,6 +7,8 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+$this->params['breadcrumbs'][] = 'Таблица скрытых сообщений';
+
 echo GridView::widget(
     [
         'dataProvider' => $dataProvider,
@@ -28,12 +30,11 @@ echo GridView::widget(
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                // вы можете настроить дополнительные свойства здесь.
                 'template' => '{1}',
                 'buttons' => [
                     '1' => function ($url, $model, $key) {
                         $url = Url::toRoute(['chat/change-visible', 'id' => $model->id, 'incorrect' => 0]);
-                        $option = ['data-confirm' => 'Вы уверены, что хотите сделать сообщение видимым?'];
+                        $option = ['data-confirm' => 'Вы уверены, что хотите снова сделать сообщение видимым?'];
                         return Html::a('Восстановить сообщение', $url, $option);
                     },
                 ],

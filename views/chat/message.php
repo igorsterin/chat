@@ -16,12 +16,10 @@ $flag4 = '';
 $flag5 = 'hide-href';
 $note = '';
 
-if (!Yii::$app->user->isGuest) {
-    if (Yii::$app->user->identity->username == $author) {
-        $flag1 = 'my-message';
-        $flag2 = '';
-        $flag5 = '';
-    }
+if (!Yii::$app->user->isGuest && Yii::$app->user->identity->username == $author) {
+    $flag1 = 'my-message';
+    $flag2 = '';
+    $flag5 = '';
 }
 
 if ((User::findByUsername($author))->is_admin) {
@@ -29,26 +27,18 @@ if ((User::findByUsername($author))->is_admin) {
     $note = '(Администратор)';
 }
 
+$url = Url::toRoute(['chat/change-visible', 'id' => $i, 'incorrect' => 1]);
+$options = [
+    'class' => 'message-details ' . $flag5,
+    'data-confirm' => 'Вы уверены, что хотите скрыть сообщение?'
+];
+
 ?>
 
-<?php
-if (!Yii::$app->user->isGuest && Yii::$app->user->identity->is_admin): ?>
-
-    <?= Html::beginTag(
-        'a',
-        [
-            'href' => Url::toRoute(['chat/change-visible', 'id' => $i, 'incorrect' => 1]),
-            'class' => 'message-details ' . $flag5,
-            'data-confirm' => 'Вы уверены, что хотите скрыть сообщение?',
-            //'data-method' => 'post',
-           // 'data-pjax' => '0',
-        ]
-    ) ?>
-    Скрыть сообщение
-    <?= Html::endTag('a') ?>
-
-<?php
-endif; ?>
+<?=
+!Yii::$app->user->isGuest && Yii::$app->user->identity->is_admin ?
+    Html::a('Скрыть сообщение', $url, $options) : '';
+?>
 
 <?= Html::beginTag('div', ['class' => 'message-body ' . $flag1 . $flag4]) ?>
 
